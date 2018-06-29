@@ -12,6 +12,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class MainFrame extends JFrame
 {
+
+	private static final long serialVersionUID = 1L;
+
 	private DetailsPanel detailsPanel;
 	private MenuPanel menuPanel;
 	private ClientesPanel clientesPanel;
@@ -349,9 +352,7 @@ public class MainFrame extends JFrame
 					public void confirmaProdutoEventOccoured(ConfirmaProdutoEvent event) {
 						Produto product = (Produto) event.getProduto();
 						
-						//this.removePanel();
 						this.addText(product);
-						//this.addPanel();
 					}
 					
 					private void addText(Produto c) {
@@ -364,15 +365,6 @@ public class MainFrame extends JFrame
 						
 					}
 
-					private void addPanel() {
-						c.add(sellsPanel, BorderLayout.WEST);
-						textArea.append("\n");
-					}
-
-					private void removePanel() {
-						c.remove(produtosList);
-						textArea.append("\n");
-					}
 				});
 				
 				produtosList.addCancelaProdutoListener(new CancelaProdutoListener() {

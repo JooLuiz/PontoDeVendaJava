@@ -52,7 +52,6 @@ public class DetailsPanel extends JPanel
 				}else {
 					String nome = nomeField.getText();
 					String id = idField.getText();
-					String senha = senhaField.getText();
 					
 					nomeField.setText(" ");
 					idField.setText(" ");
