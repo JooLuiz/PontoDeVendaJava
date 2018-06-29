@@ -69,6 +69,12 @@ public class MainFrame extends JFrame
 			}
 		});
 		
+		detailsPanel.addExitListener(new ExitListener() {
+			public void exitEventOccoured(ExitEvent event) {
+				System.exit(1);
+			}
+		});
+		
 
 		detailsPanel.addDetailListener(new DetailListener() {
 			public void detailEventOccoured(DetailEvent event) {

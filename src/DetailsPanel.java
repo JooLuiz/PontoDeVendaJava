@@ -39,7 +39,8 @@ public class DetailsPanel extends JPanel
 		
 		//Details Panel Buttons
 		
-		JButton addBtn = new JButton("Abrir");
+		JButton addBtn = new JButton("Entrar");
+		JButton exitBtn = new JButton("Fechar");
 		
 		//Details Panel Action Listener
 		
@@ -61,6 +62,13 @@ public class DetailsPanel extends JPanel
 					
 					fireDetailEvent(new DetailEvent(this, text));
 				}
+			}
+		});
+		
+		exitBtn.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+					fireExitEvent(new ExitEvent(this));
 			}
 		});
 		
@@ -119,6 +127,17 @@ public class DetailsPanel extends JPanel
 		gc.gridy = 3;
 		
 		add(addBtn, gc);
+		
+		//// Fourth Row ////////////////
+		
+		gc.weighty = 10;
+		
+		gc.fill = GridBagConstraints.NONE;
+		gc.anchor = GridBagConstraints.FIRST_LINE_START;
+		gc.gridx = 1;
+		gc.gridy = 4;
+		
+		add(exitBtn, gc);
 	}
 	
 	//Methods for Error Events
@@ -159,5 +178,25 @@ public class DetailsPanel extends JPanel
 	
 	public void removeDetailListener(DetailListener listener) {
 		listenerList.remove(DetailListener.class, listener);
+	}
+	
+	//Methods for Exit
+	
+	public void fireExitEvent(ExitEvent event) {
+		Object[] listeners = listenerList.getListenerList();
+
+		for(int i=0; i < listeners.length; i+=2) {
+			if(listeners[i] == ExitListener.class) {
+				((ExitListener)listeners[i+1]).exitEventOccoured(event);
+			}
+		}
+	}
+	
+	public void addExitListener(ExitListener listener) {
+		listenerList.add(ExitListener.class, listener);
+	}
+	
+	public void removeExitListener(ExitListener listener) {
+		listenerList.remove(ExitListener.class, listener);
 	}
 }
